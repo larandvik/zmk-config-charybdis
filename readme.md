@@ -63,7 +63,7 @@ remotes:
 ```
 
 - **`zmkfirmware`**: The main ZMK firmware repository, containing the core ZMK application code
-- **`badjeff`**: Repository containing the PMW3610 trackball driver used for the Charybdis trackball
+- **`badjeff`**: Repository containing the PMW3610 trackball driver used for the Charybdis trackball. See ([zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver)) for full configuration options.
 
 ### Projects Section
 
