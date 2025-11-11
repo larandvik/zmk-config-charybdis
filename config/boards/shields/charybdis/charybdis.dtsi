@@ -2,15 +2,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 #include <physical_layouts.dtsi>
-
-// Layer definitions matching the keymap
-#define BASE 0
-#define POINTER 1
-#define LOWER 2
-#define RAISE 3
-#define SYMBOLS 4
-#define SCROLL 5
-#define SNIPING 6
+#include "charybdis_layers.h"
 
 / {
     chosen {

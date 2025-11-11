@@ -1,1 +1,18 @@
 .DS_Store
+
+# Manual local build artifacts
+artifacts/
+
+# Build artifacts (if created in root by accident)
+.west/
+zmk/
+zephyr/
+modules/
+bootloader/
+tools/
+zmk-pmw3610-driver/
+prospector-zmk-module/
+
+# Python
+__pycache__/
+*.pyc
