@@ -23,3 +23,8 @@ include:
   shield: settings_reset
 - board: seeeduino_xiao_ble
   shield: settings_reset
+
+# Tester Pro Micro
+- board: nice_nano_v2 # Replace with the Pro Micro-compatible board you're using
+  shield: tester_pro_micro
+  format: bt

@@ -10,6 +10,7 @@ This configuration supports two modes:
   - [Table of Contents](#table-of-contents)
   - [BOM](#bom)
     - [Additional Components for Dongle Mode](#additional-components-for-dongle-mode)
+  - [Tester Pro Micro Shield](#tester-pro-micro-shield)
   - [Repository Structure](#repository-structure)
     - [Key Files Explained](#key-files-explained)
       - [Shared Configuration Files (Consolidated)](#shared-configuration-files-consolidated)
@@ -39,6 +40,7 @@ This configuration supports two modes:
     - [How to Flash](#how-to-flash)
     - [Standalone Mode](#standalone-mode-1)
     - [Dongle Mode](#dongle-mode-1)
+    - [Tester Pro Micro (GPIO Testing)](#tester-pro-micro-gpio-testing)
 
 ## BOM
 
@@ -50,6 +52,19 @@ Here is the BOM for this project (outdated): [BOM Charybdis 4x6 Wireless](/docs/
 
 ![Wireless Keyboard](/docs/picture/wireless-charybdis.png)
 
+## Tester Pro Micro Shield
+
+This repository includes a **ZMK Tester Shield** (`tester_pro_micro`) for troubleshooting and testing Pro Micro-compatible boards (Nice!Nano, Seeeduino XIAO, etc.). The tester shield maps all 18 available GPIO pins (D0-D10, D14-D16, D18-D21) to virtual "keys" that output "PIN X" when triggered, helping you verify all GPIO pins are working correctly before assembling your keyboard.
+
+**How to use:**
+1. Flash `tester_pro_micro-nice_nano_v2-zmk.uf2` to your controller (see [Building Firmware](#building-firmware))
+2. Connect the board via USB to your computer
+3. Open a text editor
+4. Connect a switch or wire from any GPIO pin to GND and trigger it
+5. The board will output "PIN X" where X is the pin number (e.g., "PIN 14")
+
+The tester runs in USB-only mode (no BLE) and includes two physical layouts for ZMK Studio visualization.
+
 ## Repository Structure
 
 ```
@@ -57,21 +72,28 @@ zmk-config-charybdis/
 ├── config/                          # Main ZMK configuration directory
 │   ├── boards/                      # Shield board definitions
 │   │   └── shields/
-│   │       └── charybdis/           # Charybdis shield configuration
-│   │           ├── charybdis.dtsi                        # Common device tree (keyboard layout, kscan)
-│   │           ├── charybdis_layers.h                    # Shared layer definitions
-│   │           ├── charybdis_trackball_processors.dtsi   # Shared trackball processing config
-│   │           ├── charybdis_right_common.dtsi           # Shared right keyboard hardware config
-│   │           ├── charybdis_left.conf                   # Left side Kconfig options (empty)
-│   │           ├── charybdis_left.overlay                # Left side device tree overlay
-│   │           ├── charybdis_right_standalone.conf       # Right side Kconfig (standalone mode)
-│   │           ├── charybdis_right_standalone.overlay    # Right side overlay (standalone mode)
-│   │           ├── charybdis_right_dongle.conf           # Symlink → charybdis_right_standalone.conf
-│   │           ├── charybdis_right_dongle.overlay        # Right side overlay (dongle mode)
-│   │           ├── prospector_dongle.conf                # Prospector dongle Kconfig options
-│   │           ├── prospector_dongle.overlay             # Prospector dongle device tree overlay
-│   │           ├── Kconfig.defconfig                     # Shield Kconfig definitions
-│   │           └── Kconfig.shield                        # Shield Kconfig options
+│   │       ├── charybdis/           # Charybdis shield configuration
+│   │       │   ├── charybdis.dtsi                        # Common device tree (keyboard layout, kscan)
+│   │       │   ├── charybdis_layers.h                    # Shared layer definitions
+│   │       │   ├── charybdis_trackball_processors.dtsi   # Shared trackball processing config
+│   │       │   ├── charybdis_right_common.dtsi           # Shared right keyboard hardware config
+│   │       │   ├── charybdis_left.conf                   # Left side Kconfig options (empty)
+│   │       │   ├── charybdis_left.overlay                # Left side device tree overlay
+│   │       │   ├── charybdis_right_standalone.conf       # Right side Kconfig (standalone mode)
+│   │       │   ├── charybdis_right_standalone.overlay    # Right side overlay (standalone mode)
+│   │       │   ├── charybdis_right_dongle.conf           # Symlink → charybdis_right_standalone.conf
+│   │       │   ├── charybdis_right_dongle.overlay        # Right side overlay (dongle mode)
+│   │       │   ├── prospector_dongle.conf                # Prospector dongle Kconfig options
+│   │       │   ├── prospector_dongle.overlay             # Prospector dongle device tree overlay
+│   │       │   ├── Kconfig.defconfig                     # Shield Kconfig definitions
+│   │       │   └── Kconfig.shield                        # Shield Kconfig options
+│   │       └── tester_pro_micro/    # Pro Micro GPIO tester shield
+│   │           ├── Kconfig.shield                        # Shield identifier
+│   │           ├── Kconfig.defconfig                     # Shield defaults (USB-only, no BLE)
+│   │           ├── tester_pro_micro.zmk.yml              # Shield metadata
+│   │           ├── tester_pro_micro.overlay              # GPIO pin definitions (18 pins)
+│   │           ├── tester_pro_micro.keymap               # Pin test macros
+│   │           └── tester_pro_micro-layouts.dtsi         # Physical layouts (pinout + single row)
 │   ├── charybdis.conf               # Global ZMK configuration
 │   ├── charybdis.keymap             # Keymap definition file
 │   ├── charybdis.zmk.yml            # ZMK build configuration
@@ -326,6 +348,7 @@ Push changes to your repository and GitHub Actions will automatically build firm
 - `charybdis_right_standalone-nice_nano_v2-zmk.uf2`
 - `charybdis_right_dongle-nice_nano_v2-zmk.uf2`
 - `prospector_dongle prospector_adapter-seeeduino_xiao_ble-zmk.uf2`
+- `tester_pro_micro-nice_nano_v2-zmk.uf2`
 - `settings_reset-nice_nano_v2-zmk.uf2`
 - `settings_reset-seeeduino_xiao_ble-zmk.uf2`
 
@@ -337,9 +360,10 @@ The interactive build script provides options for:
 2. **charybdis_right_standalone** - Right keyboard for standalone mode (Nice!Nano v2)
 3. **charybdis_right_dongle** - Right keyboard for dongle mode (Nice!Nano v2)
 4. **prospector_dongle prospector_adapter** - Dongle with display (Seeeduino XIAO BLE)
-5. **settings_reset** - Reset stored settings
+5. **tester_pro_micro** - GPIO pin tester for Pro Micro-compatible boards
+6. **settings_reset** - Reset stored settings
 
-⚠️ **Known Issue:** Option 4 (prospector_dongle with prospector_adapter) currently fails in local builds due to module patching requirements. Options 1-3 and 5 work correctly. **Use GitHub Actions for dongle builds** or consider using [act](https://github.com/nektos/act) to run the GitHub Actions workflow locally.
+⚠️ **Known Issue:** Option 4 (prospector_dongle with prospector_adapter) currently fails in local builds due to module patching requirements. Options 1-3, 5, and 6 work correctly. **Use GitHub Actions for dongle builds** or consider using [act](https://github.com/nektos/act) to run the GitHub Actions workflow locally.
 
 Built firmware files are automatically copied to `manual_build/artifacts/output/` with descriptive names.
 
@@ -366,3 +390,14 @@ Built firmware files are automatically copied to `manual_build/artifacts/output/
 4. Flash `charybdis_left-nice_nano_v2-zmk.uf2` to the left keyboard
 5. Flash `charybdis_right_dongle-nice_nano_v2-zmk.uf2` to the right keyboard
 6. **Important**: Pair the left keyboard to the dongle first, then pair the right keyboard
+
+### Tester Pro Micro (GPIO Testing)
+**For testing a Pro Micro-compatible board**
+1. Flash `tester_pro_micro-nice_nano_v2-zmk.uf2` (or your board variant) to the controller
+2. Connect the board via USB to your computer
+3. Open a text editor or terminal
+4. Connect a switch or wire from any GPIO pin to GND and trigger it
+5. The board will output "PIN X" where X is the pin number (e.g., "PIN 14")
+6. Test all pins you want to verify
+
+**Note**: The tester firmware disables Bluetooth and runs in USB-only mode for simplicity.
