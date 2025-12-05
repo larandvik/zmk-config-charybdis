@@ -5,11 +5,13 @@ This repository includes a Python script to build ZMK firmware locally using Doc
 ## Prerequisites
 
 1. **Docker** - Install Docker Desktop for macOS
+
    ```bash
    brew install --cask docker
    ```
 
 2. **Python 3** and **PyYAML**
+
    ```bash
    pip3 install -r requirements.txt
    ```
@@ -27,6 +29,7 @@ python3 build.py
 ```
 
 The script will:
+
 1. Read the `build.yaml` configuration
 2. Display available build options
 3. Ask you to select which configuration to build
@@ -89,6 +92,7 @@ Select build configuration (1-6) or 'q' to quit:
 ## Output Location
 
 Built firmware files will be in:
+
 - `manual_build/artifacts/charybdis-left/zephyr/zmk.uf2`
 - `manual_build/artifacts/charybdis-right-standalone/zephyr/zmk.uf2`
 - `manual_build/artifacts/charybdis-right-dongle/zephyr/zmk.uf2`
@@ -97,6 +101,7 @@ Built firmware files will be in:
 - `manual_build/artifacts/settings-reset/zephyr/zmk.uf2`
 
 Additionally, firmware is automatically copied to:
+
 - `manual_build/artifacts/output/*.uf2` with clean names
 
 All build artifacts (including downloaded ZMK source, Zephyr, modules, etc.) are contained within the `manual_build/` directory to keep your repository clean.
@@ -115,6 +120,7 @@ The build configuration now includes a nice!nano-based dongle with a 128x32 OLED
 The 128x32 OLED configuration automatically disables the bongo cat and modifier widgets to fit the smaller display. The display uses I2C connected to the nice!nano's pro_micro_i2c bus.
 
 To customize the display, edit `config/boards/shields/charybdis/nice_dongle.conf`:
+
 - Enable WPM: `CONFIG_ZMK_DONGLE_DISPLAY_WPM=y`
 - Change layer alignment: `CONFIG_ZMK_DONGLE_DISPLAY_LAYER_TEXT_ALIGN="left"` (or "center", "right")
 - Use macOS modifiers: `CONFIG_ZMK_DONGLE_DISPLAY_MAC_MODIFIERS=y`
@@ -129,14 +135,17 @@ To customize the display, edit `config/boards/shields/charybdis/nice_dongle.conf
 ## Troubleshooting
 
 ### Docker permission issues
+
 If you get permission errors, make sure Docker Desktop is running.
 
 ### PyYAML not found
+
 Install dependencies:
+
 ```bash
 pip3 install -r requirements.txt
 ```
 
 ### Build failures
-Check that your `build.yaml` is properly formatted and all shield definitions exist in the `config/boards/shields/` directory.
 
+Check that your `build.yaml` is properly formatted and all shield definitions exist in the `config/boards/shields/` directory.

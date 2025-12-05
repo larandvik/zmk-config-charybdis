@@ -21,6 +21,7 @@ This configuration supports two modes:
     - [Dongle Mode](#dongle-mode)
     - [Dongle Display Features](#dongle-display-features)
       - [Prospector Dongle (Seeeduino XIAO BLE)](#prospector-dongle-seeeduino-xiao-ble)
+      - [YADS Prospector Dongle (Seeeduino XIAO BLE)](#yads-prospector-dongle-seeeduino-xiao-ble)
       - [Nice!Nano Dongle (Nice!Nano v2)](#nicenano-dongle-nicenano-v2)
   - [West.yml Configuration](#westyml-configuration)
     - [Remotes Section](#remotes-section)
@@ -52,13 +53,22 @@ Here is the BOM for this project: [BOM Charybdis 4x6 Wireless](/docs/bom/readme.
 ### Additional Components for Dongle Mode
 
 **Option 1: Prospector Dongle (Seeeduino XIAO BLE)**
+
 - 1x Seeeduino XIAO BLE (nRF52840) - Dongle central
 - 1x [Prospector Display Module](https://github.com/carrefinho/prospector) - Custom OLED display
 
 **Option 2: Nice!Nano Dongle (Nice!Nano v2)**
+
 - 1x Nice!Nano v2 (nRF52840) - Dongle central
 - 1x 128x32 OLED Display (SSD1306, I2C) - Generic 0.91" OLED module
 - Uses [zmk-dongle-display](https://github.com/englmaxi/zmk-dongle-display) module
+
+**Option 3: YADS Prospector Dongle (Seeeduino XIAO BLE)**
+
+- 1x Seeeduino XIAO BLE (nRF52840) - Dongle central
+- 1x [Prospector Display Module](https://github.com/carrefinho/prospector) - Custom OLED display
+- Uses [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) module (YADS)
+- Alternative firmware for Prospector hardware with different features
 
 ![Wireless Keyboard](/docs/picture/wireless-charybdis.png)
 
@@ -181,13 +191,25 @@ In dongle mode, a dedicated dongle acts as the central device with a display:
 ### Dongle Display Features
 
 #### Prospector Dongle (Seeeduino XIAO BLE)
+
 - Active layer indicator with layer names
 - Split battery status for both peripherals
 - Peripheral connection status indicators
 - Caps Word indicator
 - Fixed brightness (50%) without ambient light sensor
 
+#### YADS Prospector Dongle (Seeeduino XIAO BLE)
+
+- **Display**: Prospector 1.69" IPS LCD
+- **Features**: Uses YADS (Yet Another Dongle Screen) firmware
+- **Battery**: Detailed battery status for central and peripherals
+- **WPM**: Words Per Minute graph/indicator
+- **Brightness**: Adjustable brightness with keyboard control
+- **System**: Connection status, layer indication, modifiers
+- **Sleep**: Deep sleep support for power saving
+
 #### Nice!Nano Dongle (Nice!Nano v2)
+
 - **Display**: 128x32 OLED (SSD1306) via I2C
 - **Active layer name** with center alignment and scrolling support
 - **Peripheral battery levels** (left + right keyboards)
@@ -198,6 +220,7 @@ In dongle mode, a dedicated dongle acts as the central device with a display:
 - **Optimized for 32px height**: Bongo cat disabled, modifiers optional
 
 **Wiring (Nice!Nano to OLED):**
+
 - VCC → 3.3V
 - GND → GND
 - SDA → Pin 2
@@ -465,7 +488,12 @@ Built firmware files are automatically copied to `manual_build/artifacts/output/
       - Flash `settings_reset-seeeduino_xiao_ble-zmk.uf2` to the **dongle**
       - Flash `prospector_dongle prospector_adapter-seeeduino_xiao_ble-zmk.uf2` to the dongle
 
-   b) **Nice!Nano Dongle (Nice!Nano v2)**
+   b) **YADS Prospector Dongle (Seeeduino XIAO BLE)**:
+      - Flash `settings_reset-nice_nano_v2-zmk.uf2` to **both** keyboards
+      - Flash `settings_reset-seeeduino_xiao_ble-zmk.uf2` to the **dongle**
+      - Flash `yads_prospector dongle_screen-seeeduino_xiao_ble-zmk.uf2` to the dongle
+
+   c) **Nice!Nano Dongle (Nice!Nano v2)**
       - Flash `settings_reset-nice_nano_v2-zmk.uf2` to **all three** devices (left, right, dongle)
       - Flash `nice_dongle dongle_display-nice_nano_v2-zmk.uf2` to the dongle
       - Connect OLED display to dongle via I2C (SDA→Pin 2, SCL→Pin 3)
