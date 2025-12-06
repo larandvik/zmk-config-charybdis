@@ -67,7 +67,7 @@ Here is the BOM for this project: [BOM Charybdis 4x6 Wireless](/docs/bom/readme.
 
 - 1x Seeeduino XIAO BLE (nRF52840) - Dongle central
 - 1x [Prospector Display Module](https://github.com/carrefinho/prospector) - Custom OLED display
-- Uses [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) module (YADS)
+- Uses [zmk-dongle-screen](https://github.com/bwshockley/zmk-dongle-screen) module (YADS)
 - Alternative firmware for Prospector hardware with different features
 
 ![Wireless Keyboard](/docs/picture/wireless-charybdis.png)

@@ -8,8 +8,8 @@ manifest:
     url-base: https://github.com/carrefinho
   - name: englmaxi
     url-base: https://github.com/englmaxi
-  - name: janpfischer
-    url-base: https://github.com/janpfischer
+  - name: bwshockley
+    url-base: https://github.com/bwshockley
   projects:
   - name: zmk
     remote: zmkfirmware
@@ -25,7 +25,7 @@ manifest:
     remote: englmaxi
     revision: main
   - name: zmk-dongle-screen
-    remote: janpfischer
+    remote: bwshockley
     revision: main
   self:
     path: config
