@@ -226,8 +226,6 @@ In dongle mode, a dedicated dongle acts as the central device with a display:
 - SDA → Pin 2
 - SCL → Pin 3
 
-See [manual_build/NICE_DONGLE_SETUP.md](manual_build/NICE_DONGLE_SETUP.md) for detailed setup instructions.
-
 ## West.yml Configuration
 
 The `config/west.yml` file defines the ZMK firmware dependencies and external modules used in this configuration.
