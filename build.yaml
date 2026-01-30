@@ -4,6 +4,11 @@ include:
 - board: nice_nano
   shield: charybdis_left
 
+# Right keyboard - split peripheral (no dongle, no standalone)
+- board: nice_nano
+  shield: charybdis_right
+
+
 # Standalone mode - right keyboard is primary/central
 - board: nice_nano
   shield: charybdis_right_standalone
