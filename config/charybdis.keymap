@@ -150,7 +150,13 @@
       bindings = <&tog GAMING>;
     };
 
-  };
+    // R + T     [
+    combo_rt_lbracket {
+      timeout-ms = <50>;
+      key-positions = <16 17>;      
+      bindings = <&kp LEFT_BRACKET>;
+    };
+   };
 
   keymap {
     compatible = "zmk,keymap";
