@@ -156,6 +156,41 @@
       key-positions = <16 17>;      
       bindings = <&kp LEFT_BRACKET>;
     };
+
+    // Y + U    ]
+    combo_yu_rbracket {
+      timeout-ms = <50>;
+      key-positions = <18 19>;
+      bindings = <&kp RBKT>;
+    };
+
+    // F + G    (
+    combo_fg_lparen {
+      timeout-ms = <50>;
+      key-positions = <28 29>;
+      bindings = <&kp LPAR>;
+    };
+
+    // H + J    )
+    combo_hj_rparen {
+      timeout-ms = <50>;
+      key-positions = <30 31>;
+      bindings = <&kp RPAR>;
+    };
+
+    // V + B     {
+    combo_vb_lbrace {
+      timeout-ms = <50>;
+      key-positions = <40 41>;
+      bindings = <&kp LBRC>;
+    };
+
+    // N + M    }
+    combo_nm_rbrace {
+      timeout-ms = <50>;
+      key-positions = <42 43>;
+      bindings = <&kp RBRC>;
+    }
    };
 
   keymap {
