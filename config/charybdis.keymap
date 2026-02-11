@@ -191,6 +191,55 @@
       key-positions = <42 43>;
       bindings = <&kp RBRC>;
     };
+
+    // W + E    +
+    combo_we_plus {
+      timeout-ms = <40>;
+      key-positions = <14 15>;
+      bindings = <&kp PLUS>;
+    };
+
+    // E + R    -
+    combo_er_minus {
+      timeout-ms = <40>;
+      key-positions = <15 16>;
+      bindings = <&kp MINUS>;
+    };
+
+    // S + D    *
+    combo_sd_asterisk {
+      timeout-ms = <40>;
+      key-positions = <26 27>;
+      bindings = <&kp ASTRK>;
+    };
+
+    // D + F    "
+    combo_df_dquote {
+      timeout-ms = <40>;
+      key-positions = <27 28>;
+      bindings = <&kp DQT>;
+    };
+
+    // J + K    '
+    combo_jk_quote {
+      timeout-ms = <40>;
+      key-positions = <31 32>;
+      bindings = <&kp SQT>;
+    };
+
+    // U + I    _
+    combo_ui_underscore {
+      timeout-ms = <40>;
+      key-positions = <19 20>;
+      bindings = <&kp UNDER>;
+    };
+
+    // I + O    |
+    combo_io_pipe {
+      timeout-ms = <40>;
+      key-positions = <20 21>;
+      bindings = <&kp PIPE>;
+    };
    };
 
   keymap {
